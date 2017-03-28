@@ -1,1 +1,2 @@
 static_path: www
+allow_remote_ajax: true
