@@ -1,0 +1,8 @@
+py:
+    volumes:
+        - ./code:/code
+    dockerfile: dockerfile_py3web
+    build: ./
+    ports:
+        - "8092:8092"
+    restart: always

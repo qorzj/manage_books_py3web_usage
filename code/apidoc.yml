@@ -1,0 +1,86 @@
+frontend:
+  - url: /book/add
+    title: 新增图书
+    method: post
+    input:
+      name: 书名
+      author: 作者
+      press: 出版社
+    output:
+      - _case: 成功
+        code!: 0
+        id: 42
+      - _case: 失败
+        code!: 1
+        error:
+          name: empty param
+  - url: /book/edit
+    title: 修改图书
+    method: post
+    input:
+      id: 书ID
+      name: 书名
+      author: 作者
+      press: 出版社
+    output:
+      - _case: 成功
+        code!: 0
+      - _case: 空ID
+        code!: 1
+        message!: 该书已被删除
+  - url: /book/([0-9]+)
+    title: 查询图书详情
+    method: get
+    input:
+      _1->id: 书ID
+    output:
+      - _case: 成功
+        code!: 0
+        detail:
+          name: 深入理解计算机系统
+          author: "[美国] Randal E·Bryant / David O'Hallaron"
+          press: 中国电力出版社
+      - _case: 空ID
+        code!: 0
+        message!: 该书已被删除
+  - url: /book/list
+    title: 查询图书列表
+    method: get
+    input: {}
+    output:
+      - _case: 成功
+        code!: 0
+        list:
+          - id: 42
+            name: 深入理解计算机系统
+            author: "[美国] Randal E·Bryant / David O'Hallaron"
+            press: 中国电力出版社
+          - id: 43
+            name: 编程珠玑
+            author: "Jon Bentley"
+            press: 人民邮电出版社
+  - url: /book/([0-9]+)
+    title: 删除图书
+    method: delete
+    input: {}
+    output:
+      - _case: 成功
+        code!: 0
+  - url: /login
+    title: 用户登录
+    method: post
+    input:
+      username: 用户名
+      password: 密码
+    output:
+      - _case: 登录成功
+        code!: 0
+      - _case: 登录失败
+        code!: 1
+  - url: /logout
+    title: 用户退出登录
+    method: post
+    input: {}
+    output:
+      - _case: 成功
+        code!: 0
