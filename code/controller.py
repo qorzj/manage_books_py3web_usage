@@ -1,3 +1,4 @@
+import web
 
 
 # post /book/add
@@ -14,6 +15,7 @@ def update_book(id:int, name=None, author=None, press=None) -> {
     '未找到ID': {'code!': 1, 'message!': '该书已被删除',}
 }:
     """修改图书信息"""
+    web.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS')
     pass
 
 
