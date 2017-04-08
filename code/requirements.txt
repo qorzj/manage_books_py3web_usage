@@ -1,1 +1,2 @@
-py3web>=0.3.6
+py3web>=0.3.8
+sqlalchemy_py3web

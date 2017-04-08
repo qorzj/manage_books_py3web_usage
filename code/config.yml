@@ -1,2 +1,9 @@
 static_path: www
 allow_remote_ajax: True
+database:
+    protocol: 'mysql+mysqlconnector'
+    username: root
+    password: pwd123456
+    host: mysql
+    port: 3306
+    database: bookstore
