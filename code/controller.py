@@ -26,7 +26,6 @@ def update_book(id:int, name=None, author=None, press=None) -> {
     if name is not None: book.name = name
     if author is not None: book.author = author
     if press is not None: book.press = press
-    ctx.db.commit()
     return '成功', {}
 
 
@@ -83,5 +82,4 @@ def delete_book(id:int) -> {
     book = query.filter(Book.id == id).first()
     if book:
         ctx.db.delete(book)
-        ctx.db.commit()
     return '成功', {}
