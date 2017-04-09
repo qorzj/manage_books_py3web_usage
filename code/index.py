@@ -11,10 +11,10 @@ sql_plugin.init()
 app = web.application()
 app.add_processor(sql_plugin.processor)
 app.add_processor(
-    lambda f: [
+    lambda f: (
         f(),
         web.ctx.db.commit() if web.ctx.method in ['PUT', 'DELETE'] else None
-    ][0]
+    )[0]
 )
 
 app.add_mapping('/book/add', post=add_book)

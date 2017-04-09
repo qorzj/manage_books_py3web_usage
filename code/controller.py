@@ -7,7 +7,12 @@ from model import Book
 def add_book(name, author, press) -> {
     '成功': {'code!': 0, 'id': 42,}
 }:
-    """新增图书"""
+    """新增图书
+    :param name: 书名
+    :param author: 作者
+    :param press: 出版社
+    :return id: 新增的书的ID
+    """
     book = Book(name=name, author=author, press=press, create_at=datetime.now())
     ctx.db.add(book)
     ctx.db.commit()
@@ -19,7 +24,14 @@ def update_book(id:int, name=None, author=None, press=None) -> {
     '成功': {'code!': 0},
     '未找到ID': {'code!': 1, 'message!': '该书已被删除',}
 }:
-    """修改图书信息"""
+    """
+    修改图书信息
+    :param id: 图书ID
+    :param name: 书名
+    :param author: 作者
+    :param press: 出版社
+    :return: message: 错误信息
+    """
     query = ctx.db.query(Book)
     book = query.filter(Book.id == id).first()
     if not book: return '未找到ID', {}
@@ -42,7 +54,15 @@ def detail_book(id:int) -> {
     },
     '未找到ID': {'code!': 1, 'message!': '该书已被删除',}
 }:
-    """查询图书详情"""
+    """
+    查询图书详情
+    :param id: 图书ID
+    :return: detail: 图书详情
+    :return: name: 书名
+    :return: author: 作者
+    :return: press: 出版社
+    :return: create_at: 创建时间
+    """
     query = ctx.db.query(Book)
     book = query.filter(Book.id == id).first()
     if not book: return '未找到ID', {}
@@ -69,7 +89,14 @@ def list_book() -> {
         ]
     }
 }:
-    """查询图书列表"""
+    """
+    查询图书列表
+    :return: list: 图书列表
+    :return: id: 图书ID
+    :return: name: 书名
+    :return: author: 作者
+    :return: press: 出版社
+    """
     return '成功', {'list': ctx.db.query(Book).all()}
 
 
@@ -77,7 +104,10 @@ def list_book() -> {
 def delete_book(id:int) -> {
     '成功': {'code!': 0}
 }:
-    """删除图书"""
+    """
+    删除图书
+    :param id: 图书ID
+    """
     query = ctx.db.query(Book)
     book = query.filter(Book.id == id).first()
     if book:
