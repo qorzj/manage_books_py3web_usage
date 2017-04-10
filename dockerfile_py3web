@@ -7,7 +7,7 @@ RUN pip3 install --upgrade pip
 RUN pip3 install mysql-connector==2.1.4
 RUN pip3 install uwsgi
 ADD code/requirements.txt /tmp/requirements.txt
-#RUN pip3 install -r /tmp/requirements.txt -i http://pypi.douban.com/simple --trusted-host pypi.douban.com
-RUN pip3 install -r /tmp/requirements.txt -i http://pypi.python.org/simple --trusted-host pypi.python.org
+RUN pip3 install -r /tmp/requirements.txt -i http://pypi.douban.com/simple --trusted-host pypi.douban.com
+#RUN pip3 install -r /tmp/requirements.txt -i http://pypi.python.org/simple --trusted-host pypi.python.org
 CMD uwsgi --http :8092 --wsgi-file index.py --chdir /code --touch-reload /tmp/uwsgi_reload
 #CMD python3 -m http.server
